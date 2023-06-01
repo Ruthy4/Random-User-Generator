@@ -30,11 +30,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '11'
     }
     buildFeatures {
         compose true
@@ -50,34 +50,31 @@ android {
 }
 
 dependencies {
+    def appDependencies = rootProject.ext.appDependencies
+    def testDependencies = rootProject.ext.testDependencies
 
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
-    implementation 'androidx.activity:activity-compose:1.3.1'
-    implementation "androidx.compose.ui:ui:$compose_version"
-    implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
-    implementation 'androidx.compose.material3:material3:1.0.0-alpha11'
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
-    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
-    debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
-    debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_version"
+    implementation appDependencies.coreKtx
+    implementation appDependencies.activityCompose
+    implementation appDependencies.composeUi
+    implementation appDependencies.composeUiToolingPreview
+    implementation appDependencies.composeMaterial3
+    implementation appDependencies.composeUiToolingDebug
+    implementation appDependencies.retrofit
+    implementation appDependencies.retrofitGsonConverter
+    implementation appDependencies.okHttp3
+    implementation appDependencies.okHttp3Logging
+    implementation appDependencies.hilt
+    implementation appDependencies.okHttp3Logging
+    kapt appDependencies.roomCompiler
+    kapt appDependencies.hiltAndroidCompiler
+    implementation appDependencies.lifecycleViewModelKtx
+    implementation appDependencies.lifecycleLiveDataKtx
+    implementation appDependencies.lifecycleRuntimeKtx
 
-    // Retrofit
-    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
-    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
-    implementation "com.squareup.okhttp3:okhttp:$okhttp3_version"
-    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp3_version"
 
-    // Dagger-hilt
-    implementation "com.google.dagger:hilt-android:$hilt_version"
-    annotationProcessor "androidx.room:room-compiler:$room_version"
-    kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
-    kapt "androidx.hilt:hilt-compiler:$hilt_compiler_version"
-
-    // Life cycles
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
-
+    implementation testDependencies.junit
+    implementation testDependencies.testExtJunit
+    implementation testDependencies.espressoCore
+    implementation testDependencies.composeUiTestJunit4
+    implementation testDependencies.composeUiTestManifest
 }
