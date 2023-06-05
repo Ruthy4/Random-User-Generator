@@ -6,5 +6,5 @@ import retrofit2.http.Query
 interface ApiService {
 
     @GET("/api/")
-    fun getUsers(@Query ("results") results : String)
+    fun getUsers(@Query("results") results: String)
 }

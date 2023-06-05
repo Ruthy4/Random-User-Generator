@@ -1,4 +1,3 @@
 package com.example.randomusergenerator.data.repository
 
-class UserGeneratorRepositoryImpl {
-}
+class UserGeneratorRepositoryImpl
