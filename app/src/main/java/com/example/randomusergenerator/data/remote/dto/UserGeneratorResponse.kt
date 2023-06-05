@@ -5,7 +5,6 @@ data class UserGeneratorResponse(
     val info: Info? = null
 )
 
-
 data class Result(
     val gender: String? = null,
     val name: Name? = null,
