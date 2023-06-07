@@ -60,7 +60,6 @@ dependencies {
     implementation appDependencies.composeMaterial3
     implementation appDependencies.composeUiToolingDebug
     implementation appDependencies.retrofit
-    implementation appDependencies.retrofitGsonConverter
     implementation appDependencies.okHttp3
     implementation appDependencies.okHttp3Logging
     implementation appDependencies.hilt
@@ -70,6 +69,8 @@ dependencies {
     implementation appDependencies.lifecycleViewModelKtx
     implementation appDependencies.lifecycleLiveDataKtx
     implementation appDependencies.lifecycleRuntimeKtx
+    implementation appDependencies.moshi
+    implementation appDependencies.retrofitMoshiConverter
 
 
     implementation testDependencies.junit
