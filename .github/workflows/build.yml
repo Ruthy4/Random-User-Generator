@@ -1,3 +1,5 @@
+name: Android build
+
 on:
   push:
     branches:
