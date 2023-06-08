@@ -75,7 +75,7 @@ jobs:
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 31
-          arch: x86
+          arch: x86_64
           target: default
           emulator-build: 7425822
           script: ./gradlew connectedDebugAndroidTest -DisCI=true
