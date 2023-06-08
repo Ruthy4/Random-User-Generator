@@ -42,7 +42,7 @@ class NetworkModule {
     fun provideApiService(client: OkHttpClient): ApiService {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
-            .addConverterFactory(MoshiConverterFactory.create(Moshi.Builder().build()))            .client(client)
+            .addConverterFactory(MoshiConverterFactory.create(Moshi.Builder().build())).client(client)
             .build()
             .create(ApiService::class.java)
     }
