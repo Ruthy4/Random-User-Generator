@@ -12,6 +12,8 @@ ext {
     junit_version = "4.13.2"
     test_ext_junit_version = "1.1.5"
     espresso_core_version = "3.5.1"
+    moshi_version = "1.11.0"
+    moshi_converter_version = "2.9.0"
 
 
     appDependencies = [
@@ -22,7 +24,6 @@ ext {
             composeMaterial3       : "androidx.compose.material3:material3:$compose_material_version",
             composeUiToolingDebug  : "androidx.compose.ui:ui-tooling:$compose_version",
             retrofit               : "com.squareup.retrofit2:retrofit:$retrofit_version",
-            retrofitGsonConverter  : "com.squareup.retrofit2:converter-gson:$retrofit_version",
             okHttp3                : "com.squareup.okhttp3:okhttp:$okhttp3_version",
             okHttp3Logging         : "com.squareup.okhttp3:logging-interceptor:$okhttp3_version",
             hilt                   : "com.google.dagger:hilt-android:$hilt_version",
@@ -31,6 +32,8 @@ ext {
             lifecycleViewModelKtx  : "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version",
             lifecycleLiveDataKtx   : "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version",
             lifecycleRuntimeKtx    : "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version",
+            moshi                  : "com.squareup.moshi:moshi-kotlin:$moshi_version",
+            retrofitMoshiConverter : "com.squareup.retrofit2:converter-moshi:$moshi_converter_version"
     ]
 
     testDependencies = [
