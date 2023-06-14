@@ -1,4 +1,4 @@
-package com.example.randomusergenerator.ui.theme
+package com.example.randomusergenerator.presentation.ui.theme
 
 import android.app.Activity
 import android.os.Build

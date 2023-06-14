@@ -1,4 +1,4 @@
-package com.example.randomusergenerator.ui.theme
+package com.example.randomusergenerator.presentation.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

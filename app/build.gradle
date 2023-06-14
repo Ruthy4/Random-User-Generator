@@ -50,6 +50,7 @@ android {
 }
 
 dependencies {
+    implementation 'androidx.room:room-common:2.5.1'
     def appDependencies = rootProject.ext.appDependencies
     def testDependencies = rootProject.ext.testDependencies
 
@@ -65,12 +66,16 @@ dependencies {
     implementation appDependencies.hilt
     implementation appDependencies.okHttp3Logging
     kapt appDependencies.roomCompiler
+    implementation appDependencies.roomRuntime
+    implementation appDependencies.roomKtx
     kapt appDependencies.hiltAndroidCompiler
     implementation appDependencies.lifecycleViewModelKtx
     implementation appDependencies.lifecycleLiveDataKtx
     implementation appDependencies.lifecycleRuntimeKtx
     implementation appDependencies.moshi
     implementation appDependencies.retrofitMoshiConverter
+    implementation appDependencies.timber
+    implementation appDependencies.hiltNavigation
 
 
     implementation testDependencies.junit
