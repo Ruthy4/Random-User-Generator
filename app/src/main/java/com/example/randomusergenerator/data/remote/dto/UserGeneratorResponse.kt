@@ -1,11 +1,11 @@
 package com.example.randomusergenerator.data.remote.dto
 
 data class UserGeneratorResponse(
-    val result: List<Result>? = emptyList(),
+    val results: List<User>? = emptyList(),
     val info: Info? = null
 )
 
-data class Result(
+data class User(
     val gender: String? = null,
     val name: Name? = null,
     val email: String? = null,
