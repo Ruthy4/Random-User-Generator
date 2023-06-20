@@ -2,7 +2,6 @@ package com.example.randomusergenerator.data.local
 
 import androidx.room.*
 
-
 @Dao
 interface UserGeneratorResponseDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)

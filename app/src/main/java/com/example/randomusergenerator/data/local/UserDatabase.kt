@@ -5,9 +5,9 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.example.randomusergenerator.utils.TypeConverter
 
-
 @Database(
-    entities = [UserEntity::class,
+    entities = [
+        UserEntity::class,
         UserGeneratorResponseEntity::class,
         InfoEntity::class,
         NameEntity::class,

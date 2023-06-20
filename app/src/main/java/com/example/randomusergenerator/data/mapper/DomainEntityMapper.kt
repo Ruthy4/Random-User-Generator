@@ -3,7 +3,6 @@ package com.example.randomusergenerator.data.mapper
 import com.example.randomusergenerator.data.local.*
 import com.example.randomusergenerator.data.remote.dto.*
 
-
 fun UserGeneratorResponse?.toEntity(): UserGeneratorResponseEntity? {
     return this?.let { it ->
         UserGeneratorResponseEntity(
@@ -12,7 +11,6 @@ fun UserGeneratorResponse?.toEntity(): UserGeneratorResponseEntity? {
         )
     }
 }
-
 
 fun Info?.toEntity(): InfoEntity? {
     return this?.let { info ->
@@ -59,4 +57,3 @@ fun Location?.toEntity(): LocationEntity? {
         )
     }
 }
-

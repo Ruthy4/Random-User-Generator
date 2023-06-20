@@ -5,12 +5,10 @@ import com.example.randomusergenerator.data.remote.dto.*
 
 fun UserGeneratorResponseEntity.toDomain(): UserGeneratorResponse {
     return UserGeneratorResponse(
-            results = result?.toDomain(),
-            info = info?.toDomain()
-        )
-
+        results = result?.toDomain(),
+        info = info?.toDomain()
+    )
 }
-
 
 fun List<UserEntity>?.toDomain(): List<User>? {
     return this?.map { userEntity ->
@@ -57,4 +55,3 @@ fun LocationEntity?.toDomain(): Location? {
         )
     }
 }
-
