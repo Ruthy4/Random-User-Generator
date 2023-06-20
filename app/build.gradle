@@ -65,12 +65,17 @@ dependencies {
     implementation appDependencies.hilt
     implementation appDependencies.okHttp3Logging
     kapt appDependencies.roomCompiler
+    implementation appDependencies.roomRuntime
+    implementation appDependencies.roomKtx
     kapt appDependencies.hiltAndroidCompiler
     implementation appDependencies.lifecycleViewModelKtx
     implementation appDependencies.lifecycleLiveDataKtx
     implementation appDependencies.lifecycleRuntimeKtx
     implementation appDependencies.moshi
     implementation appDependencies.retrofitMoshiConverter
+    implementation appDependencies.timber
+    implementation appDependencies.hiltNavigation
+    implementation appDependencies.coil
 
 
     implementation testDependencies.junit

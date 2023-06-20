@@ -3,6 +3,7 @@ package com.example.randomusergenerator.di
 import com.example.randomusergenerator.data.remote.ApiService
 import com.example.randomusergenerator.utils.Constants.BASE_URL
 import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,6 +18,10 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 class NetworkModule {
+
+    private val moshi: Moshi = Moshi.Builder()
+        .add(KotlinJsonAdapterFactory())
+        .build()
 
     @Provides
     @Singleton
@@ -42,8 +47,7 @@ class NetworkModule {
     fun provideApiService(client: OkHttpClient): ApiService {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
-            .addConverterFactory(MoshiConverterFactory.create(Moshi.Builder().build())).client(client)
-            .build()
+            .addConverterFactory(MoshiConverterFactory.create(moshi)).client(client).build()
             .create(ApiService::class.java)
     }
 }
