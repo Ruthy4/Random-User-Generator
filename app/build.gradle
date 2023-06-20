@@ -76,6 +76,7 @@ dependencies {
     implementation appDependencies.retrofitMoshiConverter
     implementation appDependencies.timber
     implementation appDependencies.hiltNavigation
+    implementation appDependencies.coil
 
 
     implementation testDependencies.junit
@@ -83,4 +84,5 @@ dependencies {
     implementation testDependencies.espressoCore
     implementation testDependencies.composeUiTestJunit4
     implementation testDependencies.composeUiTestManifest
+    testImplementation testDependencies.mockito
 }

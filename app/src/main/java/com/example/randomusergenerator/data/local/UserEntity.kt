@@ -1,9 +1,14 @@
 package com.example.randomusergenerator.data.local
 
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.example.randomusergenerator.data.remote.dto.DateOfBirth
+import com.example.randomusergenerator.data.remote.dto.LoginDetails
+import com.example.randomusergenerator.data.remote.dto.PictureData
+import com.example.randomusergenerator.data.remote.dto.Street
 
-@Entity(tableName = "user_generator_response")
+@Entity(tableName = "user_response")
 data class UserGeneratorResponseEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
@@ -19,9 +24,12 @@ data class UserEntity(
     val name: NameEntity? = null,
     val email: String? = null,
     val location: LocationEntity? = null,
-    val login: LoginDetailsEntity? = null,
-    val dob: DateOfBirthEntity? = null,
-    val picture: PictureDataEntity? = null,
+    @Embedded(prefix = "Login_details")
+    val login: LoginDetails? = null,
+    @Embedded(prefix = "dob")
+    val dob: DateOfBirth? = null,
+    @Embedded(prefix = "picture_details")
+    val picture: PictureData? = null,
 )
 
 @Entity(tableName = "info")
@@ -47,39 +55,9 @@ data class NameEntity(
 data class LocationEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
-    val street: StreetEntity? = null,
+    @Embedded(prefix = "street")
+    val street: Street? = null,
     val city: String? = null,
     val state: String? = null,
     val country: String? = null
-)
-
-@Entity(tableName = "street")
-data class StreetEntity(
-    @PrimaryKey(autoGenerate = true)
-    val id: Long = 0,
-    val number: Int? = 0,
-    val name: String? = null,
-)
-
-@Entity(tableName = "login_details")
-data class LoginDetailsEntity(
-    @PrimaryKey(autoGenerate = true)
-    val id: Long = 0,
-    val username: String? = null,
-    val password: String? = null,
-)
-
-@Entity(tableName = "date_of_birth")
-data class DateOfBirthEntity(
-    @PrimaryKey(autoGenerate = true)
-    val id: Long = 0,
-    val age: Int? = 0,
-    val date: String? = null,
-)
-
-@Entity(tableName = "picture_data")
-data class PictureDataEntity(
-    @PrimaryKey(autoGenerate = true)
-    val id: Long = 0,
-    val thumbnail: String? = null
 )

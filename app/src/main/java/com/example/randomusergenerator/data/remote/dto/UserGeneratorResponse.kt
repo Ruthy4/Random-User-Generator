@@ -1,7 +1,7 @@
 package com.example.randomusergenerator.data.remote.dto
 
 data class UserGeneratorResponse(
-    val result: List<User>? = emptyList(),
+    val results: List<User>? = emptyList(),
     val info: Info? = null
 )
 

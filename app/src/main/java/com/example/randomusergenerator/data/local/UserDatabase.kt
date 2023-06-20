@@ -11,18 +11,12 @@ import com.example.randomusergenerator.utils.TypeConverter
         UserGeneratorResponseEntity::class,
         InfoEntity::class,
         NameEntity::class,
-        LocationEntity::class,
-        StreetEntity::class,
-        LoginDetailsEntity::class,
-        DateOfBirthEntity::class,
-        PictureDataEntity::class
+        LocationEntity::class
     ],
     version = 1,
     exportSchema = false
 )
 @TypeConverters(TypeConverter::class)
 abstract class UserDatabase : RoomDatabase() {
-    abstract fun userDao(): UserDao
     abstract fun userGeneratorResponseDao(): UserGeneratorResponseDao
-    abstract fun infoDao(): InfoDao
 }

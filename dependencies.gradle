@@ -16,6 +16,8 @@ ext {
     moshi_converter_version = "2.9.0"
     timber_version = "4.7.1"
     hiltNavigation = "1.0.0"
+    coil_version = "1.3.2"
+    mockito_version = "3.12.4"
 
 
     appDependencies = [
@@ -39,7 +41,9 @@ ext {
             moshi                  : "com.squareup.moshi:moshi-kotlin:$moshi_version",
             retrofitMoshiConverter : "com.squareup.retrofit2:converter-moshi:$moshi_converter_version",
             timber                 : "com.jakewharton.timber:timber:$timber_version",
-            hiltNavigation         : "androidx.hilt:hilt-navigation-compose:$hiltNavigation"
+            hiltNavigation         : "androidx.hilt:hilt-navigation-compose:$hiltNavigation",
+            coil                   : "io.coil-kt:coil-compose:$coil_version"
+
 
     ]
 
@@ -49,5 +53,6 @@ ext {
             espressoCore         : "androidx.test.espresso:espresso-core:$espresso_core_version",
             composeUiTestJunit4  : "androidx.compose.ui:ui-test-junit4:$compose_version",
             composeUiTestManifest: "androidx.compose.ui:ui-test-manifest:$compose_version",
+            mockito              : "org.mockito:mockito-core:$mockito_version"
     ]
 }
