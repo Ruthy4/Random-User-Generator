@@ -12,12 +12,18 @@ ext {
     junit_version = "4.13.2"
     test_ext_junit_version = "1.1.5"
     espresso_core_version = "3.5.1"
-    moshi_version = "1.11.0"
+    moshi_version = "1.13.0"
     moshi_converter_version = "2.9.0"
     timber_version = "4.7.1"
     hiltNavigation = "1.0.0"
     coil_version = "1.3.2"
-    mockito_version = "3.12.4"
+    mockito_version = "4.3.1"
+    mockito_kotlin_version = "4.0.0"
+    android_core_version = "2.1.0"
+    coroutines_version = "1.6.0"
+    android_runner_version = "1.1.0"
+    codegen_version = "1.13.0"
+    roboelectric_version = "4.10.3"
 
 
     appDependencies = [
@@ -42,7 +48,8 @@ ext {
             retrofitMoshiConverter : "com.squareup.retrofit2:converter-moshi:$moshi_converter_version",
             timber                 : "com.jakewharton.timber:timber:$timber_version",
             hiltNavigation         : "androidx.hilt:hilt-navigation-compose:$hiltNavigation",
-            coil                   : "io.coil-kt:coil-compose:$coil_version"
+            coil                   : "io.coil-kt:coil-compose:$coil_version",
+            codegen                : "com.squareup.moshi:moshi-kotlin-codegen:$codegen_version"
     ]
 
     testDependencies = [
@@ -51,5 +58,11 @@ ext {
             espressoCore         : "androidx.test.espresso:espresso-core:$espresso_core_version",
             composeUiTestJunit4  : "androidx.compose.ui:ui-test-junit4:$compose_version",
             composeUiTestManifest: "androidx.compose.ui:ui-test-manifest:$compose_version",
+            androidCore          : "androidx.arch.core:core-testing:$android_core_version",
+            mockito              : "org.mockito:mockito-core:$mockito_version",
+            mockitoKotlin        : "org.mockito.kotlin:mockito-kotlin:$mockito_kotlin_version",
+            coroutines           : "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_version",
+            androidTestRunner    : "androidx.test:runner:$android_runner_version",
+            roboelectric         : "org.robolectric:robolectric:$roboelectric_version"
     ]
 }

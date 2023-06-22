@@ -47,6 +47,11 @@ android {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
         }
     }
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
 }
 
 dependencies {
@@ -76,11 +81,18 @@ dependencies {
     implementation appDependencies.timber
     implementation appDependencies.hiltNavigation
     implementation appDependencies.coil
+    kapt appDependencies.codegen
 
 
-    implementation testDependencies.junit
-    implementation testDependencies.testExtJunit
-    implementation testDependencies.espressoCore
-    implementation testDependencies.composeUiTestJunit4
-    implementation testDependencies.composeUiTestManifest
+    testImplementation testDependencies.junit
+    testImplementation testDependencies.testExtJunit
+    testImplementation testDependencies.androidCore
+    testImplementation testDependencies.mockito
+    testImplementation testDependencies.mockitoKotlin
+    testImplementation testDependencies.coroutines
+    testImplementation testDependencies.androidTestRunner
+
+    androidTestImplementation testDependencies.junit
+    androidTestImplementation testDependencies.testExtJunit
+    testImplementation testDependencies.roboelectric
 }

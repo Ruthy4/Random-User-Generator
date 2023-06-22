@@ -4,15 +4,16 @@ import androidx.room.*
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.example.randomusergenerator.data.remote.dto.User
 
 @Dao
-interface UserGeneratorDao {
+interface UserDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertUser(response: UserResponseEntity?)
+    suspend fun insertUser(user: List<User>?)
 
-    @Query("SELECT * FROM user_response")
-    suspend fun getUser(): UserResponseEntity?
+    @Query("SELECT * FROM user")
+    suspend fun getUser(): List<User>
 
-    @Query("DELETE FROM user_response")
+    @Query("DELETE FROM user")
     suspend fun deleteUser()
 }
