@@ -1,4 +1,4 @@
-package com.example.randomusergenerator.data.local
+package com.example.randomusergenerator.data.local.dao
 
 import androidx.room.*
 import androidx.room.Insert
