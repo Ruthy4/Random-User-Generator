@@ -78,10 +78,10 @@ dependencies {
     kapt appDependencies.roomCompiler
 
 
-    testImplementation testDependencies.composeUiTestJunit4
-    testImplementation testDependencies.composeUiTestManifest
-    testImplementation testDependencies.espressoCore
+    androidTestImplementation testDependencies.composeUiTestJunit4
+    androidTestImplementation testDependencies.composeUiTestManifest
+    androidTestImplementation testDependencies.espressoCore
+    androidTestImplementation testDependencies.junit
     testImplementation testDependencies.junit
-    implementation testDependencies.junit
-    implementation testDependencies.testExtJunit
+    androidTestImplementation testDependencies.testExtJunit
 }
