@@ -82,6 +82,15 @@ dependencies {
     androidTestImplementation testDependencies.composeUiTestManifest
     androidTestImplementation testDependencies.espressoCore
     androidTestImplementation testDependencies.junit
-    testImplementation testDependencies.junit
     androidTestImplementation testDependencies.testExtJunit
+
+    testImplementation testDependencies.androidCore
+    testImplementation testDependencies.androidTestRunner
+    testImplementation testDependencies.coroutines
+    testImplementation testDependencies.junit
+    testImplementation testDependencies.mockito
+    testImplementation testDependencies.mockitoKotlin
+    testImplementation testDependencies.roboelectric
+    testImplementation testDependencies.testExtJunit
+
 }
