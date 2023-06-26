@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "gender": "female",
+    "name": {
+      "title": "Ms",
+      "first": "Jessika",
+      "last": "Nickel"
+    },
+    "location": {
+      "street": {
+        "number": 8270,
+        "name": "Schützenstraße"
+      },
+      "city": "Bretten",
+      "state": "Bayern",
+      "country": "Germany"
+    },
+    "email": "jessika.nickel@example.com",
+    "login": {
+      "username": "goldenpeacock660",
+      "password": "killkill"
+    },
+    "dob": {
+      "date": "1955-09-28T09:24:00.170Z",
+      "age": 66
+    },
+    "picture": {
+      "thumbnail": "https://randomuser.me/api/portraits/thumb/women/50.jpg"
+    }
+  }
+]
