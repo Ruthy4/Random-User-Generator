@@ -82,5 +82,6 @@ dependencies {
     testImplementation testDependencies.composeUiTestManifest
     testImplementation testDependencies.espressoCore
     testImplementation testDependencies.junit
-    testImplementation testDependencies.testExtJunit
+    implementation testDependencies.junit
+    implementation testDependencies.testExtJunit
 }
