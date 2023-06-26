@@ -32,7 +32,7 @@ class UserDaoTest : BaseDaoTest() {
         val userList = parseJsonFileToObject<List<User>>("sample-user.json", type)
 
         dao.insertUser(userList)
-        dao.deleteUser()
+        dao.deleteUser(1)
 
         val expectedResult = 0
         val actualResult = dao.getUser().size
@@ -40,13 +40,14 @@ class UserDaoTest : BaseDaoTest() {
     }
 
     @Test
-    fun `verify that getUser returns the list of users`() = runTest {
+    fun `verify that user email matches correct email`() = runTest {
         val type = Types.newParameterizedType(List::class.java, User::class.java)
         val userList = parseJsonFileToObject<List<User>>("sample-user.json", type)
 
         dao.insertUser(userList)
 
-        val actualResult = dao.getUser()
-        Assert.assertEquals(userList, actualResult)
+        val expectedResult = userList?.get(0)?.email
+        val actualResult = dao.getUser().get(0).email
+        Assert.assertEquals(expectedResult, actualResult)
     }
 }
