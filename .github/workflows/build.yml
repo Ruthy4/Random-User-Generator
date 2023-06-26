@@ -60,7 +60,7 @@ jobs:
           path: junit
   instrumented-tests:
     name: Instrumented Tests
-    runs-on: macos-latest
+    runs-on: macos-12
     timeout-minutes: 30
     strategy:
       fail-fast: false
