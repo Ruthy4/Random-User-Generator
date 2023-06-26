@@ -1,10 +1,8 @@
 package com.example.randomusergenerator.utils
 
 import androidx.room.TypeConverter
-import com.example.randomusergenerator.data.local.*
-import com.squareup.moshi.JsonAdapter
+import com.example.randomusergenerator.data.remote.dto.*
 import com.squareup.moshi.Moshi
-import com.squareup.moshi.Types
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 
 class TypeConverter {
@@ -12,66 +10,53 @@ class TypeConverter {
         .add(KotlinJsonAdapterFactory())
         .build()
 
-    private val userEntityListAdapter: JsonAdapter<List<UserEntity>> =
-        moshi.adapter(Types.newParameterizedType(List::class.java, UserEntity::class.java))
-
     @TypeConverter
-    fun fromUserStringToClass(value: String): UserEntity? {
-        return moshi.adapter(UserEntity::class.java).fromJson(value)
+    fun fromNameStringToClass(value: String): Name? {
+        return moshi.adapter(Name::class.java).fromJson(value)
     }
 
     @TypeConverter
-    fun fromUserClassToString(value: UserEntity): String? {
-        return moshi.adapter(UserEntity::class.java).toJson(value)
+    fun fromNameClassToString(value: Name): String? {
+        return moshi.adapter(Name::class.java).toJson(value)
     }
 
     @TypeConverter
-    fun fromNameStringToClass(value: String): NameEntity? {
-        return moshi.adapter(NameEntity::class.java).fromJson(value)
+    fun fromLocationStringToClass(value: String): Location? {
+        return moshi.adapter(Location::class.java).fromJson(value)
     }
 
     @TypeConverter
-    fun fromNameClassToString(value: NameEntity): String? {
-        return moshi.adapter(NameEntity::class.java).toJson(value)
+    fun fromLocationClassToString(value: Location): String? {
+        return moshi.adapter(Location::class.java).toJson(value)
     }
 
     @TypeConverter
-    fun userGeneratorResponseEntityFromJson(value: String): UserResponseEntity? {
-        return moshi.adapter(UserResponseEntity::class.java).fromJson(value)
+    fun fromLoginDetailsStringToClass(value: String): LoginDetails? {
+        return moshi.adapter(LoginDetails::class.java).fromJson(value)
     }
 
     @TypeConverter
-    fun userGeneratorResponseEntityToJson(value: UserResponseEntity?): String? {
-        return moshi.adapter(UserResponseEntity::class.java).toJson(value)
+    fun fromLoginDetailsClassToString(value: LoginDetails): String? {
+        return moshi.adapter(LoginDetails::class.java).toJson(value)
     }
 
     @TypeConverter
-    fun fromLocationStringToClass(value: String): LocationEntity? {
-        return moshi.adapter(LocationEntity::class.java).fromJson(value)
+    fun fromDobStringToClass(value: String): DateOfBirth? {
+        return moshi.adapter(DateOfBirth::class.java).fromJson(value)
     }
 
     @TypeConverter
-    fun fromLocationClassToString(value: LocationEntity): String? {
-        return moshi.adapter(LocationEntity::class.java).toJson(value)
+    fun fromDobClassToString(value: DateOfBirth): String? {
+        return moshi.adapter(DateOfBirth::class.java).toJson(value)
     }
 
     @TypeConverter
-    fun fromInfoStringToClass(value: String): InfoEntity? {
-        return moshi.adapter(InfoEntity::class.java).fromJson(value)
+    fun fromPictureStringToClass(value: String): Picture? {
+        return moshi.adapter(Picture::class.java).fromJson(value)
     }
 
     @TypeConverter
-    fun fromInfoClassToString(value: InfoEntity): String? {
-        return moshi.adapter(InfoEntity::class.java).toJson(value)
-    }
-
-    @TypeConverter
-    fun fromUserListStringToClass(value: String): List<UserEntity>? {
-        return userEntityListAdapter.fromJson(value)
-    }
-
-    @TypeConverter
-    fun fromUserListClassToString(value: List<UserEntity>): String? {
-        return userEntityListAdapter.toJson(value)
+    fun fromPictureClassToString(value: Picture): String? {
+        return moshi.adapter(Picture::class.java).toJson(value)
     }
 }

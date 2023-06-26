@@ -53,34 +53,35 @@ dependencies {
     def appDependencies = rootProject.ext.appDependencies
     def testDependencies = rootProject.ext.testDependencies
 
-    implementation appDependencies.coreKtx
     implementation appDependencies.activityCompose
-    implementation appDependencies.composeUi
-    implementation appDependencies.composeUiToolingPreview
+    implementation appDependencies.coil
     implementation appDependencies.composeMaterial3
+    implementation appDependencies.composeUi
     implementation appDependencies.composeUiToolingDebug
-    implementation appDependencies.retrofit
-    implementation appDependencies.okHttp3
-    implementation appDependencies.okHttp3Logging
+    implementation appDependencies.composeUiToolingPreview
+    implementation appDependencies.coreKtx
     implementation appDependencies.hilt
-    implementation appDependencies.okHttp3Logging
-    kapt appDependencies.roomCompiler
-    implementation appDependencies.roomRuntime
-    implementation appDependencies.roomKtx
-    kapt appDependencies.hiltAndroidCompiler
-    implementation appDependencies.lifecycleViewModelKtx
+    implementation appDependencies.hiltNavigation
     implementation appDependencies.lifecycleLiveDataKtx
     implementation appDependencies.lifecycleRuntimeKtx
+    implementation appDependencies.lifecycleViewModelKtx
     implementation appDependencies.moshi
+    implementation appDependencies.okHttp3
+    implementation appDependencies.okHttp3Logging
+    implementation appDependencies.retrofit
     implementation appDependencies.retrofitMoshiConverter
+    implementation appDependencies.roomKtx
+    implementation appDependencies.roomRuntime
     implementation appDependencies.timber
-    implementation appDependencies.hiltNavigation
-    implementation appDependencies.coil
+    kapt appDependencies.codegen
+    kapt appDependencies.hiltAndroidCompiler
+    kapt appDependencies.roomCompiler
 
 
-    implementation testDependencies.junit
-    implementation testDependencies.testExtJunit
-    implementation testDependencies.espressoCore
-    implementation testDependencies.composeUiTestJunit4
-    implementation testDependencies.composeUiTestManifest
+    androidTestImplementation testDependencies.composeUiTestJunit4
+    androidTestImplementation testDependencies.composeUiTestManifest
+    androidTestImplementation testDependencies.espressoCore
+    androidTestImplementation testDependencies.junit
+    testImplementation testDependencies.junit
+    androidTestImplementation testDependencies.testExtJunit
 }
