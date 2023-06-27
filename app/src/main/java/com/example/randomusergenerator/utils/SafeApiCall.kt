@@ -1,7 +1,6 @@
 package com.example.randomusergenerator.utils
 
 import com.example.randomusergenerator.data.remote.ApiService
-import com.example.randomusergenerator.data.remote.dto.UserResponse
 import com.example.randomusergenerator.utils.Constants.CONNECT_EXCEPTION
 import com.example.randomusergenerator.utils.Constants.SOCKET_TIME_OUT_EXCEPTION
 import com.example.randomusergenerator.utils.Constants.SSL_EXCEPTION
@@ -51,7 +50,7 @@ suspend fun <T : Any> safeApiCall(call: suspend () -> Response<T>): Resource<T> 
                 } catch (err: IOException) {
                     Resource.Error(UNKNOWN_NETWORK_EXCEPTION)
                 } catch (err: SSLException) {
-                    Resource.Error( SSL_EXCEPTION)
+                    Resource.Error(SSL_EXCEPTION)
                 }
             }
             else -> {
