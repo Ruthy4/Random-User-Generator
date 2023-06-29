@@ -1,6 +1,5 @@
 package com.example.randomusergenerator.di
 
-import com.example.randomusergenerator.data.local.UserDatabase
 import com.example.randomusergenerator.data.local.dao.UserDao
 import com.example.randomusergenerator.data.remote.ApiService
 import com.example.randomusergenerator.data.repository.UserRepositoryImpl

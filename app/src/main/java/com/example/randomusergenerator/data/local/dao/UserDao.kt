@@ -5,7 +5,6 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.randomusergenerator.data.remote.dto.User
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface UserDao {
@@ -26,5 +25,5 @@ interface UserDao {
     suspend fun deleteUser(userId: Int)
 
     @Query("DELETE FROM user")
-    suspend fun clearAllUsers() //TODO unit tests
+    suspend fun clearAllUsers() // TODO unit tests
 }
