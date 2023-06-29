@@ -3,6 +3,7 @@ package com.example.randomusergenerator.di
 import android.content.Context
 import androidx.room.Room
 import com.example.randomusergenerator.data.local.UserDatabase
+import com.example.randomusergenerator.data.local.dao.UserDao
 import com.example.randomusergenerator.utils.Constants.DATABASE_NAME
 import dagger.Module
 import dagger.Provides
@@ -22,4 +23,8 @@ object LocalModule {
             .fallbackToDestructiveMigration()
             .build()
     }
+
+    @Singleton
+    @Provides
+    fun provideUserDao(userDatabase: UserDatabase): UserDao = userDatabase.userDao()
 }
