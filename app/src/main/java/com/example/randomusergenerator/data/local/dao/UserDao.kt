@@ -8,6 +8,13 @@ import com.example.randomusergenerator.data.remote.dto.User
 
 @Dao
 interface UserDao {
+
+    @Transaction
+    suspend fun updateUser(user: List<User>?) {
+        clearAllUsers()
+        insertUser(user)
+    }
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertUser(user: List<User>?)
 
@@ -16,4 +23,7 @@ interface UserDao {
 
     @Query("DELETE FROM user WHERE id = :userId")
     suspend fun deleteUser(userId: Int)
+
+    @Query("DELETE FROM user")
+    suspend fun clearAllUsers() // TODO unit tests
 }
