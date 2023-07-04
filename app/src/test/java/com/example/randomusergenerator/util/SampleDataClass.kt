@@ -3,7 +3,6 @@ package com.example.randomusergenerator.util
 import com.example.randomusergenerator.data.local.*
 import com.example.randomusergenerator.data.remote.dto.*
 
-
 val sampleUser = User(
     id = 0,
     gender = "male",
@@ -75,5 +74,3 @@ val sampleUserData = UserData(
         thumbnail = "https://example.com/thumbnail.jpg"
     )
 )
-
-
