@@ -42,17 +42,14 @@ class UserViewModelTest {
     }
 
     @Test
-    fun `when get user is called then return users`() = runTest {
-        // GIVEN
+    fun `when getAllUsers is called then return users`() = runTest {
         val expectedResult = listOf(sampleUserData)
         whenever(repository.getAllUsers(numberOfUsers)).thenReturn(Resource.Success(expectedResult))
 
-        // WHEN
         serviceUnderTest.getAllUsers(numberOfUsers)
         assertTrue(serviceUnderTest.uiState.value.isLoading)
         advanceUntilIdle()
 
-        // THEN
         verify(repository).getAllUsers(numberOfUsers)
         val actualResult = serviceUnderTest.uiState.value
 
@@ -61,17 +58,14 @@ class UserViewModelTest {
     }
 
     @Test
-    fun `when get user is called and error occured then return error message`() = runTest {
-        // GIVEN
+    fun `when getAllUsers is called and error occurred then return error message`() = runTest {
         val expectedResult = "There is an error"
         whenever(repository.getAllUsers(numberOfUsers)).thenReturn(Resource.Error(expectedResult))
 
-        // WHEN
         serviceUnderTest.getAllUsers(numberOfUsers)
         assertTrue(serviceUnderTest.uiState.value.isLoading)
         advanceUntilIdle()
 
-        // THEN
         verify(repository).getAllUsers(numberOfUsers)
         val actualResult = serviceUnderTest.uiState.value
         assertFalse(actualResult.isLoading)
@@ -79,16 +73,13 @@ class UserViewModelTest {
     }
 
     @Test
-    fun `when get user is called and state is loading then verify loading state`() = runTest {
-        // GIVEN
+    fun `when getAllUsers is called and state is loading then verify loading state`() = runTest {
         whenever(repository.getAllUsers(numberOfUsers)).thenReturn(Resource.Loading())
 
-        // WHEN
         serviceUnderTest.getAllUsers(numberOfUsers)
         assertTrue(serviceUnderTest.uiState.value.isLoading)
         advanceUntilIdle()
 
-        // THEN
         verify(repository).getAllUsers(numberOfUsers)
         val actualResult = serviceUnderTest.uiState.value
         assertTrue(actualResult.isLoading)
