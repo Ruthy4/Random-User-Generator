@@ -42,7 +42,7 @@ class UserViewModelTest {
     }
 
     @Test
-    fun `when getAllUsers is called then return users`() = runTest {
+    fun `when getAllUsers is called, and state is successful then return users`() = runTest {
         val expectedResult = listOf(sampleUserData)
         whenever(repository.getAllUsers(numberOfUsers)).thenReturn(Resource.Success(expectedResult))
 
