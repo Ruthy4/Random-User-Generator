@@ -56,7 +56,6 @@ class UserViewModelTest {
         verify(repository).getAllUsers(numberOfUsers)
         val actualResult = serviceUnderTest.uiState.value
 
-//        val userResponse = actualResult.users
         assertFalse(actualResult.isLoading)
         assertEquals(expectedResult, actualResult.users)
     }
