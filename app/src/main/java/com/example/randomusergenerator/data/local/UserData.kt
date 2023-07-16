@@ -16,7 +16,7 @@ data class UserData(
         fun from(users: List<User>): List<UserData> {
             return users.map {
                 UserData(
-                    id = it.id,
+                    id = it.userId,
                     gender = it.gender,
                     name = NameData.from(it.name),
                     email = it.email,
