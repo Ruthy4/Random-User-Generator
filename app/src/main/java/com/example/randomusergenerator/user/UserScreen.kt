@@ -32,7 +32,13 @@ fun UserScreen() {
 
 @Composable
 fun UserListScreen(userViewState: UserViewState) {
-    val dialogState = remember { mutableStateOf(true) }
+    val dialogState = remember { mutableStateOf(false) }
+
+    LaunchedEffect(userViewState.errorMessage) {
+        if (userViewState.errorMessage?.isNotBlank() == true) {
+            dialogState.value = true
+        }
+    }
 
     Column(
         modifier = Modifier
@@ -51,8 +57,7 @@ fun UserListScreen(userViewState: UserViewState) {
                 }
             }
         }
-        if (userViewState.errorMessage?.isNotBlank() == true) {
-            dialogState.value = true
+        if (dialogState.value && userViewState.errorMessage?.isNotBlank() == true) {
             AlertDialog(
                 onDismissRequest = { dialogState.value = false },
                 title = { Text(stringResource(R.string.error_message)) },

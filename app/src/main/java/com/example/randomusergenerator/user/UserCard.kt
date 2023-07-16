@@ -56,7 +56,7 @@ fun UserCard(
             elevation = CardDefaults.cardElevation(space_x0_25),
             colors = CardDefaults.cardColors(
                 containerColor = Color.White
-            ),
+            )
         ) {
             Column(modifier = Modifier.padding(space_x2)) {
                 Text(
