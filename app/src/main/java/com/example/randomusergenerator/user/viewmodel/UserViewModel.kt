@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.randomusergenerator.data.local.UserViewState
 import com.example.randomusergenerator.domain.repository.UserRepository
+import com.example.randomusergenerator.utils.Constants.NUM_OF_USERS
 import com.example.randomusergenerator.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,10 +18,10 @@ class UserViewModel @Inject constructor(private val userRepository: UserReposito
     private var _uiState = MutableStateFlow(UserViewState())
     val uiState: StateFlow<UserViewState> get() = _uiState
 
-    fun getAllUsers(numberOfUsers: Int) {
+    fun getAllUsers() {
         _uiState.update { it.copy(isLoading = true) }
         viewModelScope.launch {
-            when (val response = userRepository.getAllUsers(numberOfUsers)) {
+            when (val response = userRepository.getAllUsers(NUM_OF_USERS)) {
                 is Resource.Success -> {
                     _uiState.update { it.copy(isLoading = false, users = response.data) }
                 }

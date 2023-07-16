@@ -88,7 +88,7 @@ fun UserCard(
                 }
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier.padding(top = space_x2)
+                    modifier = Modifier.padding(top = space_half)
                 ) {
                     Icon(
                         imageVector = Icons.Default.LocationOn,

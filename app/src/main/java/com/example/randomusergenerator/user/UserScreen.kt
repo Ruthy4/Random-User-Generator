@@ -15,13 +15,12 @@ import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.randomusergenerator.ui.resources.Dimensions.space_x2
 import com.example.randomusergenerator.user.viewmodel.UserViewModel
-import com.example.randomusergenerator.utils.Constants.NUM_OF_USERS
 
 @Composable
 fun UserScreen() {
     val userViewModel: UserViewModel = viewModel()
     LaunchedEffect(key1 = true) {
-        userViewModel.getAllUsers(NUM_OF_USERS)
+        userViewModel.getAllUsers()
     }
     UserListScreen(userViewModel = userViewModel)
 }
