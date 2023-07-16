@@ -11,10 +11,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
+import com.example.randomusergenerator.R
 import com.example.randomusergenerator.data.local.UserData
 import com.example.randomusergenerator.ui.resources.DarkBlueColor
 import com.example.randomusergenerator.ui.resources.Dimensions.space_half
@@ -43,7 +45,7 @@ fun UserCard(
         ) {
             Image(
                 painter = rememberImagePainter(data = user.picture?.thumbnail),
-                contentDescription = "User card",
+                contentDescription = stringResource(R.string.description_user_card),
                 modifier = Modifier.fillMaxSize()
             )
         }
@@ -53,7 +55,7 @@ fun UserCard(
                 .weight(1f),
             elevation = CardDefaults.cardElevation(space_x0_25),
             colors = CardDefaults.cardColors(
-                containerColor = Color.White,
+                containerColor = Color.White
             ),
         ) {
             Column(modifier = Modifier.padding(space_x2)) {
@@ -63,7 +65,7 @@ fun UserCard(
                     TextStyle(
                         fontSize = fontSize14,
                         fontWeight = FontWeight(500),
-                        color = DarkBlueColor,
+                        color = DarkBlueColor
                     )
                 )
                 Row(
@@ -72,7 +74,7 @@ fun UserCard(
                 ) {
                     Icon(
                         imageVector = Icons.Default.LocationOn,
-                        contentDescription = "City Icon",
+                        contentDescription = stringResource(R.string.description_city_icon),
                         tint = DarkBlueColor,
                         modifier = Modifier.size(space_x2)
                     )
@@ -82,7 +84,7 @@ fun UserCard(
                         style = TextStyle(
                             fontSize = fontSize12,
                             fontWeight = FontWeight(400),
-                            color = DarkBlueColor,
+                            color = DarkBlueColor
                         )
                     )
                 }
@@ -92,7 +94,7 @@ fun UserCard(
                 ) {
                     Icon(
                         imageVector = Icons.Default.LocationOn,
-                        contentDescription = "Country Icon",
+                        contentDescription = stringResource(R.string.description_country_icon),
                         tint = DarkBlueColor,
                         modifier = Modifier.size(space_x2)
                     )
@@ -102,7 +104,7 @@ fun UserCard(
                         style = TextStyle(
                             fontSize = fontSize12,
                             fontWeight = FontWeight(400),
-                            color = DarkBlueColor,
+                            color = DarkBlueColor
                         )
                     )
                 }

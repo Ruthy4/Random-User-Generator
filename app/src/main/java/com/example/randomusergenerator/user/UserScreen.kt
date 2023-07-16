@@ -12,22 +12,26 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.randomusergenerator.R
+import com.example.randomusergenerator.data.local.UserViewState
 import com.example.randomusergenerator.ui.resources.Dimensions.space_x2
 import com.example.randomusergenerator.user.viewmodel.UserViewModel
 
 @Composable
 fun UserScreen() {
     val userViewModel: UserViewModel = viewModel()
+    val userViewState by userViewModel.uiState.collectAsState()
+
     LaunchedEffect(key1 = true) {
         userViewModel.getAllUsers()
     }
-    UserListScreen(userViewModel = userViewModel)
+    UserListScreen(userViewState = userViewState)
 }
 
 @Composable
-fun UserListScreen(userViewModel: UserViewModel) {
-    val userViewState by userViewModel.uiState.collectAsState()
+fun UserListScreen(userViewState: UserViewState) {
     val dialogState = remember { mutableStateOf(true) }
 
     Column(
@@ -51,11 +55,11 @@ fun UserListScreen(userViewModel: UserViewModel) {
             dialogState.value = true
             AlertDialog(
                 onDismissRequest = { dialogState.value = false },
-                title = { Text("Error") },
+                title = { Text(stringResource(R.string.error_message)) },
                 text = { Text(userViewState.errorMessage.toString()) },
                 confirmButton = {
                     Button(onClick = { dialogState.value = false }) {
-                        Text("OK")
+                        Text(stringResource(R.string.ok))
                     }
                 }
             )
