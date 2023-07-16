@@ -8,7 +8,7 @@ import com.squareup.moshi.JsonClass
 @Entity(tableName = "user")
 data class User(
     @PrimaryKey(autoGenerate = true)
-    val id: Int = 0,
+    val userId: Int = 0,
     val gender: String? = null,
     val name: Name? = null,
     val email: String? = null,

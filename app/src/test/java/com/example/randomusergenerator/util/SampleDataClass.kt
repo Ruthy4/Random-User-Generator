@@ -4,7 +4,7 @@ import com.example.randomusergenerator.data.local.*
 import com.example.randomusergenerator.data.remote.dto.*
 
 val sampleUser = User(
-    id = 0,
+    userId = 0,
     gender = "male",
     name = Name(
         title = "Mr",

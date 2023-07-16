@@ -33,7 +33,7 @@ class UserViewModelTest {
     @Mock
     lateinit var repository: UserRepository
 
-    private val numberOfUsers = 10
+    private val numberOfUsers = 50
 
     @Before
     fun setup() {
@@ -46,7 +46,7 @@ class UserViewModelTest {
         val expectedResult = listOf(sampleUserData)
         whenever(repository.getAllUsers(numberOfUsers)).thenReturn(Resource.Success(expectedResult))
 
-        serviceUnderTest.getAllUsers(numberOfUsers)
+        serviceUnderTest.getAllUsers()
         assertTrue(serviceUnderTest.uiState.value.isLoading)
         advanceUntilIdle()
 
@@ -62,7 +62,7 @@ class UserViewModelTest {
         val expectedResult = "There is an error"
         whenever(repository.getAllUsers(numberOfUsers)).thenReturn(Resource.Error(expectedResult))
 
-        serviceUnderTest.getAllUsers(numberOfUsers)
+        serviceUnderTest.getAllUsers()
         assertTrue(serviceUnderTest.uiState.value.isLoading)
         advanceUntilIdle()
 
@@ -76,7 +76,7 @@ class UserViewModelTest {
     fun `when getAllUsers is called and state is loading then verify loading state`() = runTest {
         whenever(repository.getAllUsers(numberOfUsers)).thenReturn(Resource.Loading())
 
-        serviceUnderTest.getAllUsers(numberOfUsers)
+        serviceUnderTest.getAllUsers()
         assertTrue(serviceUnderTest.uiState.value.isLoading)
         advanceUntilIdle()
 
