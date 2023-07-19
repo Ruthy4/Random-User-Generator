@@ -1,12 +1,15 @@
 package com.example.randomusergenerator.data.local
 
+import android.os.Parcelable
 import com.example.randomusergenerator.data.remote.dto.Name
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class NameData(
     val title: String? = null,
     val first: String? = null,
     val last: String? = null,
-) {
+) : Parcelable {
     companion object {
         fun from(name: Name?): NameData {
             return NameData(

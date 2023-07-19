@@ -10,7 +10,10 @@ object FontSize {
     val fontSize16 = 16.sp
     val fontSize18 = 18.sp
     val fontSize20 = 20.sp
+    val fontSize36 = 36.sp
 }
+
+val DetailImageSize = 120.dp
 
 object Dimensions {
     val none = 0.dp

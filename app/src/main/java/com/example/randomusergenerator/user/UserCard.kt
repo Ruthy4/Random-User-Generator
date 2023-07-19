@@ -1,6 +1,7 @@
 package com.example.randomusergenerator.user
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
@@ -30,13 +31,15 @@ import com.example.randomusergenerator.ui.resources.FontSize.fontSize14
 @OptIn(ExperimentalCoilApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun UserCard(
-    user: UserData
+    user: UserData,
+    onClick: (UserData) -> Unit
 ) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = space_x2, vertical = space_x1)
+            .clickable { onClick(user) }
     ) {
         Box(
             modifier = Modifier
