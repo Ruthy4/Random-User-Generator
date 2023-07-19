@@ -4,11 +4,10 @@ import android.os.Parcelable
 import com.example.randomusergenerator.data.remote.dto.Street
 import kotlinx.android.parcel.Parcelize
 
-@Parcelize
 data class StreetData(
     val number: Int? = 0,
     val name: String? = null,
-) : Parcelable {
+) {
     companion object {
         fun from(street: Street?): StreetData {
             return StreetData(

@@ -4,7 +4,6 @@ import android.os.Parcelable
 import com.example.randomusergenerator.data.remote.dto.*
 import kotlinx.parcelize.Parcelize
 
-@Parcelize
 data class UserData(
     val id: Int = 0,
     val gender: String? = null,
@@ -14,7 +13,7 @@ data class UserData(
     val login: LoginDetailsData? = null,
     val dob: DateOfBirthData? = null,
     val picture: PictureData? = null,
-) : Parcelable {
+) {
     companion object {
         fun from(users: List<User>): List<UserData> {
             return users.map {
