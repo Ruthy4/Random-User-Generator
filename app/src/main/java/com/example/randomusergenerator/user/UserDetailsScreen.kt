@@ -17,6 +17,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role.Companion.Image
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import com.example.randomusergenerator.R
@@ -64,7 +65,8 @@ fun UserDetailsScreen(user: UserData) {
             style = TextStyle(
                 fontSize = fontSize36,
                 fontWeight = FontWeight(400),
-                color = DarkBlueColor
+                color = DarkBlueColor,
+                textAlign = TextAlign.Center
             ),
             modifier = Modifier.padding(top = space_x3_5)
         )
