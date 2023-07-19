@@ -1,8 +1,6 @@
 package com.example.randomusergenerator.data.local
 
-import android.os.Parcelable
 import com.example.randomusergenerator.data.remote.dto.*
-import kotlinx.parcelize.Parcelize
 
 data class UserData(
     val id: Int = 0,
