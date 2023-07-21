@@ -28,4 +28,20 @@ data class UserData(
             }
         }
     }
+
+    val getAddress: String
+        get() {
+            val streetName = location?.street?.name ?: ""
+            val city = location?.city ?: ""
+            val state = location?.state ?: ""
+            val country = location?.country ?: ""
+            return "$streetName, $city, $state, $country"
+        }
+
+    val fullName: String
+        get() {
+            val firstName = name?.first
+            val lastName = name?.last
+            return "$firstName $lastName"
+        }
 }
