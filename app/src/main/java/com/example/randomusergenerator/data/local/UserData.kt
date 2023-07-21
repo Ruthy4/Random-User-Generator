@@ -38,11 +38,10 @@ data class UserData(
             return "$streetName, $city, $state, $country"
         }
 
-    val fullName : String
+    val fullName: String
         get() {
             val firstName = name?.first
             val lastName = name?.last
             return "$firstName $lastName"
         }
-
 }
