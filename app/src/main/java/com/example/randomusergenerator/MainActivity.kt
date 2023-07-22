@@ -14,11 +14,15 @@ import androidx.navigation.compose.rememberNavController
 import com.example.randomusergenerator.navigator.NavigationEffect
 import com.example.randomusergenerator.ui.theme.RandomUserGeneratorTheme
 import com.example.randomusergenerator.user.UserScreen
+import com.example.randomusergenerator.view.FeatureApi
 import com.example.randomusergenerator.view.Screen.USER_SCREEN
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    @Inject
+    lateinit var featureApi: FeatureApi
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,14 +33,14 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    MyApp()
+                    MyApp(featureApi = featureApi)
                 }
             }
         }
     }
 }
 @Composable
-fun MyApp() {
+fun MyApp(featureApi: FeatureApi) {
     val navController = rememberNavController()
     NavigationEffect(navController = navController)
 
@@ -44,6 +48,7 @@ fun MyApp() {
         navController = navController,
         startDestination = USER_SCREEN.name,
     ) {
+        featureApi.createGraph(this, navController)
     }
 }
 @Preview(showBackground = true)

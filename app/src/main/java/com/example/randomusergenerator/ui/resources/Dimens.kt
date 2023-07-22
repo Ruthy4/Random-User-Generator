@@ -4,14 +4,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 object FontSize {
-    val fontSize10 = 10.sp
     val fontSize12 = 12.sp
     val fontSize14 = 14.sp
     val fontSize16 = 16.sp
     val fontSize18 = 18.sp
     val fontSize20 = 20.sp
+    val fontSize36 = 36.sp
 }
-
+val DetailImageSize = 120.dp
 object Dimensions {
     val none = 0.dp
     val space_quarter = 2.dp
