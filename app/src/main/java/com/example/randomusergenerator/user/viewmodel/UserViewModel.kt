@@ -18,6 +18,9 @@ class UserViewModel @Inject constructor(private val userRepository: UserReposito
     private var _uiState = MutableStateFlow(UserViewState())
     val uiState: StateFlow<UserViewState> get() = _uiState
 
+    init {
+        getAllUsers()
+    }
     fun getAllUsers() {
         _uiState.update { it.copy(isLoading = true) }
         viewModelScope.launch {
