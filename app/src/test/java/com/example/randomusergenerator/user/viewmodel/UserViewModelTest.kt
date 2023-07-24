@@ -47,7 +47,7 @@ class UserViewModelTest {
     }
 
     @Test
-    fun `when getAllUsers is called, and state is successful then return users`() = runTest {
+    fun `when getAllUsers is called and state is successful then return users`() = runTest {
         val expectedResult = listOf(sampleUserData)
         whenever(repository.getAllUsers(numberOfUsers)).thenReturn(Resource.Success(expectedResult))
 
@@ -86,13 +86,13 @@ class UserViewModelTest {
     }
 
     @Test
-    fun `when navigateToUserDetails is called, then verify correct function is called`() = runTest {
+    fun `when navigateToUserDetails is called then verify correct function is called`() = runTest {
         serviceUnderTest.navigateToUserDetails(sampleUserData)
         verify(navigationManager).navigateTo(USER_DETAILS_SCREEN.name, sampleUserData)
     }
 
     @Test
-    fun `when navigateBack is called, then verify correct function is called`() = runTest {
+    fun `when navigateBack is called then verify correct function is called`() = runTest {
         serviceUnderTest.navigateBack()
         verify(navigationManager).navigateUp()
     }
