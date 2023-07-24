@@ -6,6 +6,7 @@ import com.example.randomusergenerator.navigator.NavigationManager
 import com.example.randomusergenerator.util.MainCoroutineRule
 import com.example.randomusergenerator.util.sampleUserData
 import com.example.randomusergenerator.utils.Resource
+import com.example.randomusergenerator.view.Screen.USER_DETAILS_SCREEN
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.*
 import org.junit.Assert.*
@@ -16,6 +17,7 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.mockito.Mock
 import org.mockito.MockitoAnnotations
+import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
 
 @OptIn(ExperimentalCoroutinesApi::class)
@@ -81,5 +83,17 @@ class UserViewModelTest {
         val actualResult = serviceUnderTest.uiState.value
         assertTrue(actualResult.isLoading)
         assertEquals(true, actualResult.isLoading)
+    }
+
+    @Test
+    fun `when navigateToUserDetails is called, then verify correct function is called`() = runTest {
+        serviceUnderTest.navigateToUserDetails(sampleUserData)
+        verify(navigationManager).navigateTo(USER_DETAILS_SCREEN.name, sampleUserData)
+    }
+
+    @Test
+    fun `when navigateBack is called, then verify correct function is called`() = runTest {
+        serviceUnderTest.navigateBack()
+        verify(navigationManager).navigateUp()
     }
 }

@@ -27,7 +27,7 @@ class UserViewModel @Inject constructor(
     init {
         getAllUsers()
     }
-    fun getAllUsers() {
+    private fun getAllUsers() {
         _uiState.update { it.copy(isLoading = true) }
         viewModelScope.launch {
             when (val response = userRepository.getAllUsers(NUM_OF_USERS)) {
