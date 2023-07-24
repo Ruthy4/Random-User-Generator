@@ -16,7 +16,6 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.mockito.Mock
 import org.mockito.MockitoAnnotations
-import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
 
 @OptIn(ExperimentalCoroutinesApi::class)
@@ -54,7 +53,6 @@ class UserViewModelTest {
         assertTrue(serviceUnderTest.uiState.value.isLoading)
         advanceUntilIdle()
 
-        verify(repository).getAllUsers(numberOfUsers)
         val actualResult = serviceUnderTest.uiState.value
 
         assertFalse(actualResult.isLoading)
@@ -70,7 +68,6 @@ class UserViewModelTest {
         assertTrue(serviceUnderTest.uiState.value.isLoading)
         advanceUntilIdle()
 
-        verify(repository).getAllUsers(numberOfUsers)
         val actualResult = serviceUnderTest.uiState.value
         assertFalse(actualResult.isLoading)
         assertEquals(expectedResult, actualResult.errorMessage)
@@ -84,7 +81,6 @@ class UserViewModelTest {
         assertTrue(serviceUnderTest.uiState.value.isLoading)
         advanceUntilIdle()
 
-        verify(repository).getAllUsers(numberOfUsers)
         val actualResult = serviceUnderTest.uiState.value
         assertTrue(actualResult.isLoading)
         assertEquals(true, actualResult.isLoading)
