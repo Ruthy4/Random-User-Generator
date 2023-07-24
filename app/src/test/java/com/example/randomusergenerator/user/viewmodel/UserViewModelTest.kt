@@ -2,6 +2,7 @@ package com.example.randomusergenerator.user.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.randomusergenerator.domain.repository.UserRepository
+import com.example.randomusergenerator.navigator.NavigationManager
 import com.example.randomusergenerator.util.MainCoroutineRule
 import com.example.randomusergenerator.util.sampleUserData
 import com.example.randomusergenerator.utils.Resource
@@ -31,6 +32,9 @@ class UserViewModelTest {
     private lateinit var serviceUnderTest: UserViewModel
 
     @Mock
+    lateinit var navigationManager: NavigationManager
+
+    @Mock
     lateinit var repository: UserRepository
 
     private val numberOfUsers = 50
@@ -38,7 +42,7 @@ class UserViewModelTest {
     @Before
     fun setup() {
         MockitoAnnotations.openMocks(this)
-        serviceUnderTest = UserViewModel(repository)
+        serviceUnderTest = UserViewModel(repository, navigationManager)
     }
 
     @Test

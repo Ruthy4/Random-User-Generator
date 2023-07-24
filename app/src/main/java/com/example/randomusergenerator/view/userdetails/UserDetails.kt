@@ -51,7 +51,7 @@ fun UserDetailsScreen(user: UserData) {
                 .size(space_x5)
                 .clickable { userViewModel.navigateBack() },
             painter = painterResource(id = R.drawable.back_arrow),
-            contentDescription = "navigate back"
+            contentDescription = stringResource(R.string.navigate_back)
         )
         Spacer(modifier = Modifier.height(space_x2_5))
         Box(

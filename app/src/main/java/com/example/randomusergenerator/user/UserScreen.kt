@@ -25,7 +25,7 @@ fun UserScreen() {
     val userViewModel: UserViewModel = hiltViewModel()
     val userViewState by userViewModel.uiState.collectAsState()
 
-    LaunchedEffect(key1 = false) {
+    LaunchedEffect(key1 = true) {
         userViewModel.getAllUsers()
     }
     UserListScreen(userViewState = userViewState) {
