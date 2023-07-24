@@ -13,22 +13,25 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.randomusergenerator.R
+import com.example.randomusergenerator.data.local.UserData
 import com.example.randomusergenerator.data.local.UserViewState
 import com.example.randomusergenerator.ui.resources.Dimensions.space_x2
 import com.example.randomusergenerator.user.viewmodel.UserViewModel
 
 @Composable
 fun UserScreen() {
-    val userViewModel: UserViewModel = viewModel()
+    val userViewModel: UserViewModel = hiltViewModel()
     val userViewState by userViewModel.uiState.collectAsState()
 
-    UserListScreen(userViewState = userViewState)
+    UserListScreen(userViewState = userViewState) {
+        userViewModel.navigateToUserDetails(it)
+    }
 }
 
 @Composable
-fun UserListScreen(userViewState: UserViewState) {
+fun UserListScreen(userViewState: UserViewState, onClick: (UserData) -> Unit) {
     val dialogState = remember { mutableStateOf(false) }
 
     LaunchedEffect(userViewState.errorMessage) {
@@ -49,7 +52,9 @@ fun UserListScreen(userViewState: UserViewState) {
             userViewState.users?.let { userList ->
                 LazyColumn(modifier = Modifier.fillMaxSize()) {
                     items(userList) { user ->
-                        UserCard(user)
+                        UserCard(user) {
+                            onClick(it)
+                        }
                     }
                 }
             }
