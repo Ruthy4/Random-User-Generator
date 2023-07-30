@@ -31,6 +31,7 @@ ext {
             codegen                : "com.squareup.moshi:moshi-kotlin-codegen:$codegen_version",
             coil                   : "io.coil-kt:coil-compose:$coil_version",
             composeMaterial3       : "androidx.compose.material3:material3:$compose_material_version",
+            composeMaterial2       : "androidx.compose.material:material:$compose_version",
             composeUi              : "androidx.compose.ui:ui:$compose_version",
             composeUiToolingDebug  : "androidx.compose.ui:ui-tooling:$compose_version",
             composeUiToolingPreview: "androidx.compose.ui:ui-tooling-preview:$compose_version",
