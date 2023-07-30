@@ -61,6 +61,7 @@ dependencies {
     implementation appDependencies.activityCompose
     implementation appDependencies.coil
     implementation appDependencies.composeMaterial3
+    implementation appDependencies.composeMaterial2
     implementation appDependencies.composeUi
     implementation appDependencies.composeUiToolingDebug
     implementation appDependencies.composeUiToolingPreview
