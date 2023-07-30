@@ -26,7 +26,7 @@ fun UserScreen() {
     Scaffold(
         topBar = {
             ExpandableSearchToolbar(
-                title = "Random User Generator",
+                title = stringResource(R.string.app_name),
                 onSearchQueryChange = { query ->
                     searchQuery = query
                 }
