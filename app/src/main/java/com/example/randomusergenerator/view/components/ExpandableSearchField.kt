@@ -65,11 +65,11 @@ fun ExpandableSearchToolbar(
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
-fun SearchTextField(
-    modifier: Modifier = Modifier,
+private fun SearchTextField(
     value: String,
-    onValueChange: (String) -> Unit,
-    onClose: () -> Unit
+    modifier: Modifier = Modifier,
+    onClose: () -> Unit,
+    onValueChange: (String) -> Unit
 ) {
     val focusRequester = remember { FocusRequester() }
     val keyboardController = LocalSoftwareKeyboardController.current
@@ -93,7 +93,7 @@ fun SearchTextField(
             capitalization = KeyboardCapitalization.None
         ),
         keyboardActions = KeyboardActions(
-            onSearch = { }
+            onSearch = { TODO() }
         ),
         visualTransformation = VisualTransformation.None,
         cursorBrush = SolidColor(Color.White),
