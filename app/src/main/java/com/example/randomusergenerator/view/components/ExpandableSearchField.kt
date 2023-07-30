@@ -51,7 +51,10 @@ fun ExpandableSearchToolbar(
                         searchQuery = it
                         onSearchQueryChange(it)
                     },
-                    onClose = { isExpanded = false }
+                    onClose = {
+                        isExpanded = false
+                        searchQuery = ""
+                    }
                 )
             } else {
                 ExpandableSearchIcon(onClick = { isExpanded = true })
