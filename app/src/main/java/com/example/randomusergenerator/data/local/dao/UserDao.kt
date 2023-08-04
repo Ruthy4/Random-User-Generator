@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.randomusergenerator.data.remote.dto.User
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface UserDao {
@@ -26,4 +27,6 @@ interface UserDao {
 
     @Query("DELETE FROM user")
     suspend fun clearAllUsers() // TODO unit tests
+    @Query("SELECT * FROM user WHERE name LIKE '%' || :searchQuery || '%'")
+    fun searchDatabase(searchQuery: String): Flow<List<User>>
 }
