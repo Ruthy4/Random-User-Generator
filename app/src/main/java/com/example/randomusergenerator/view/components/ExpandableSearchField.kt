@@ -37,7 +37,6 @@ fun ExpandableSearchToolbar(
     onClose: () -> Unit
 ) {
     var isExpanded by remember { mutableStateOf(false) }
-//    var searchQuery by remember { mutableStateOf("") }
 
     TopAppBar(
         title = { Text(text = title) },

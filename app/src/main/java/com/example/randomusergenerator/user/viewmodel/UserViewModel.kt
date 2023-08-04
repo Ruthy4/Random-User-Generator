@@ -18,6 +18,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
+@OptIn(ExperimentalCoroutinesApi::class, FlowPreview::class)
 class UserViewModel @Inject constructor(
     private val userRepository: UserRepository,
     private val navigationManager: NavigationManager
@@ -51,7 +52,6 @@ class UserViewModel @Inject constructor(
         }
     }
 
-    @OptIn(ExperimentalCoroutinesApi::class, FlowPreview::class)
     fun setName(name: String) {
         _name.value = name
 
