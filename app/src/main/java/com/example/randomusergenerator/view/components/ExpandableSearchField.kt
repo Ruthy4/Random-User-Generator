@@ -32,10 +32,11 @@ import com.example.randomusergenerator.ui.theme.blueLight
 @Composable
 fun ExpandableSearchToolbar(
     title: String,
-    onSearchQueryChange: (String) -> Unit
+    text: String,
+    onSearchQueryChange: (String) -> Unit,
+    onClose: () -> Unit
 ) {
     var isExpanded by remember { mutableStateOf(false) }
-    var searchQuery by remember { mutableStateOf("") }
 
     TopAppBar(
         title = { Text(text = title) },
@@ -46,14 +47,11 @@ fun ExpandableSearchToolbar(
             if (isExpanded) {
                 SearchTextField(
                     modifier = Modifier.fillMaxWidth(),
-                    value = searchQuery,
-                    onValueChange = {
-                        searchQuery = it
-                        onSearchQueryChange(it)
-                    },
+                    value = text,
+                    onValueChange = onSearchQueryChange,
                     onClose = {
+                        onClose()
                         isExpanded = false
-                        searchQuery = ""
                     }
                 )
             } else {

@@ -21,15 +21,15 @@ import com.example.randomusergenerator.view.components.ExpandableSearchToolbar
 fun UserScreen() {
     val userViewModel: UserViewModel = hiltViewModel()
     val userViewState by userViewModel.uiState.collectAsState()
-    var searchQuery by remember { mutableStateOf("") }
+    val name by userViewModel.name.collectAsState()
 
     Scaffold(
         topBar = {
             ExpandableSearchToolbar(
                 title = stringResource(R.string.app_name),
-                onSearchQueryChange = { query ->
-                    searchQuery = query
-                }
+                text = name,
+                onSearchQueryChange = userViewModel::setName,
+                onClose = { userViewModel.setName("") }
             )
         },
         content = { padding ->

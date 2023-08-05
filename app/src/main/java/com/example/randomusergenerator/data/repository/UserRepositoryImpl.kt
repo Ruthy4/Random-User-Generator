@@ -6,6 +6,8 @@ import com.example.randomusergenerator.data.remote.ApiService
 import com.example.randomusergenerator.domain.repository.UserRepository
 import com.example.randomusergenerator.utils.Resource
 import com.example.randomusergenerator.utils.safeApiCall
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class UserRepositoryImpl @Inject constructor(
@@ -38,6 +40,13 @@ class UserRepositoryImpl @Inject constructor(
             else -> {
                 Resource.Loading()
             }
+        }
+    }
+
+    override suspend fun searchUser(search: String): Flow<List<UserData>> {
+        val searchResult = userDao.searchDatabase(search)
+        return searchResult.map {
+            UserData.from(it)
         }
     }
 }
