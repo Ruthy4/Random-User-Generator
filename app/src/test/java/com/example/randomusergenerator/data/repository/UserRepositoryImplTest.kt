@@ -1,5 +1,6 @@
 package com.example.randomusergenerator.data.repository
 
+import com.example.randomusergenerator.data.local.UserData
 import com.example.randomusergenerator.data.local.dao.UserDao
 import com.example.randomusergenerator.data.remote.ApiService
 import com.example.randomusergenerator.data.remote.dto.UserResponse
@@ -8,6 +9,8 @@ import com.example.randomusergenerator.util.sampleUserData
 import com.example.randomusergenerator.util.sampleUserResponse
 import com.example.randomusergenerator.utils.Resource
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
 import okhttp3.ResponseBody.Companion.toResponseBody
 import org.junit.Assert.*
@@ -95,4 +98,22 @@ class UserRepositoryImplTest {
 
             assertTrue(result is Resource.Error)
         }
+
+    @Test
+    fun `when searchUser is called then return user from database`() = runTest {
+        // GIVEN
+        val searchQuery = "John"
+        val userList = listOf(sampleUser)
+        whenever(mockUserDao.searchDatabase(searchQuery)).thenReturn(flowOf(userList))
+
+        // WHEN
+        serviceUnderTest.searchUser(searchQuery)
+
+        // THEN
+        verify(mockUserDao).searchDatabase(searchQuery)
+
+        val actualData = mockUserDao.searchDatabase(searchQuery).first()
+        val expectedData = listOf(sampleUserData)
+        assertEquals(UserData.from(actualData), expectedData)
+    }
 }
