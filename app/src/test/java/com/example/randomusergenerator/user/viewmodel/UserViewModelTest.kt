@@ -99,7 +99,7 @@ class UserViewModelTest {
     }
 
     @Test
-    fun `when setName is called, then search database for name parameter`() = runTest {
+    fun `when setName is called then return input name parameter`() = runTest {
         // GIVEN
         val searchQuery = "John"
         val expectedData = listOf(sampleUserData)
