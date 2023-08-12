@@ -8,6 +8,7 @@ import com.example.randomusergenerator.util.sampleUserData
 import com.example.randomusergenerator.utils.Resource
 import com.example.randomusergenerator.view.Screen.USER_DETAILS_SCREEN
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.*
 import org.junit.Assert.*
 import org.junit.Before
@@ -95,5 +96,23 @@ class UserViewModelTest {
     fun `when navigateBack is called then verify correct function is called`() = runTest {
         serviceUnderTest.navigateBack()
         verify(navigationManager).navigateUp()
+    }
+
+    @Test
+    fun `when setName is called, then search database for name parameter`() = runTest {
+        // GIVEN
+        val searchQuery = "John"
+        val expectedData = listOf(sampleUserData)
+        whenever(repository.searchUser(searchQuery)).thenReturn(flowOf(expectedData))
+
+        // WHEN
+        serviceUnderTest.setName(searchQuery)
+        advanceUntilIdle()
+
+        // THEN
+        val actualResult = serviceUnderTest.uiState.value
+        val nameResult = serviceUnderTest.name.value
+        assertTrue(actualResult.isLoading)
+        assertEquals(searchQuery, nameResult)
     }
 }
