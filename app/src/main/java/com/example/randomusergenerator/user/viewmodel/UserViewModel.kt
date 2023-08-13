@@ -34,19 +34,27 @@ class UserViewModel @Inject constructor(
     init {
         getAllUsers()
     }
+
     private fun getAllUsers() {
         _uiState.update { it.copy(isLoading = true) }
         viewModelScope.launch {
-            when (val response = userRepository.getAllUsers(NUM_OF_USERS)) {
-                is Resource.Success -> {
-                    _uiState.update { it.copy(isLoading = false, users = response.data) }
-                    tempUserList.value = response.data
-                }
-                is Resource.Error -> {
-                    _uiState.update { it.copy(isLoading = false, errorMessage = response.error) }
-                }
-                is Resource.Loading -> {
-                    _uiState.update { it.copy(isLoading = true) }
+            userRepository.getAllUsers(NUM_OF_USERS).collect { response ->
+                when (response) {
+                    is Resource.Success -> {
+                        _uiState.update { it.copy(isLoading = false, users = response.data) }
+                        tempUserList.value = response.data
+                    }
+                    is Resource.Error -> {
+                        _uiState.update {
+                            it.copy(
+                                isLoading = false,
+                                errorMessage = response.error
+                            )
+                        }
+                    }
+                    is Resource.Loading -> {
+                        _uiState.update { it.copy(isLoading = true) }
+                    }
                 }
             }
         }

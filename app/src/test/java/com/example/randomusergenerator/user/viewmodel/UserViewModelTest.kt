@@ -8,6 +8,7 @@ import com.example.randomusergenerator.util.sampleUserData
 import com.example.randomusergenerator.utils.Resource
 import com.example.randomusergenerator.view.Screen.USER_DETAILS_SCREEN
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.*
 import org.junit.Assert.*
 import org.junit.Before
@@ -49,7 +50,7 @@ class UserViewModelTest {
     @Test
     fun `when getAllUsers is called and state is successful then return users`() = runTest {
         val expectedResult = listOf(sampleUserData)
-        whenever(repository.getAllUsers(numberOfUsers)).thenReturn(Resource.Success(expectedResult))
+        whenever(repository.getAllUsers(numberOfUsers)).thenReturn(flowOf(Resource.Success(expectedResult)))
 
         assertTrue(serviceUnderTest.uiState.value.isLoading)
         advanceUntilIdle()
@@ -63,7 +64,7 @@ class UserViewModelTest {
     @Test
     fun `when getAllUsers is called and error occurred then return error message`() = runTest {
         val expectedResult = "There is an error"
-        whenever(repository.getAllUsers(numberOfUsers)).thenReturn(Resource.Error(expectedResult))
+        whenever(repository.getAllUsers(numberOfUsers)).thenReturn(flowOf(Resource.Error(expectedResult)))
 
         assertTrue(serviceUnderTest.uiState.value.isLoading)
         advanceUntilIdle()
@@ -75,7 +76,7 @@ class UserViewModelTest {
 
     @Test
     fun `when getAllUsers is called and state is loading then verify loading state`() = runTest {
-        whenever(repository.getAllUsers(numberOfUsers)).thenReturn(Resource.Loading())
+        whenever(repository.getAllUsers(numberOfUsers)).thenReturn(flowOf(Resource.Loading()))
 
         assertTrue(serviceUnderTest.uiState.value.isLoading)
         advanceUntilIdle()

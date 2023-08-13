@@ -54,10 +54,13 @@ class UserRepositoryImplTest {
         whenever(mockUserDao.updateUser(any())).thenReturn(Unit)
 
         // WHEN
-        serviceUnderTest.getAllUsers(numberOfUsers)
+        val resultFlow = serviceUnderTest.getAllUsers(numberOfUsers)
+        val result = mutableListOf<Resource<List<UserData>>>()
+        resultFlow.collect {
+            result.add(it)
+        }
 
         // THEN
-
         val initialDbResult = mockUserDao.getUser()
         assertTrue(initialDbResult.isNotEmpty())
         assertEquals(1, initialDbResult.size)
@@ -90,13 +93,20 @@ class UserRepositoryImplTest {
                 .thenReturn(errorResponse)
 
             // WHEN
-            val result = serviceUnderTest.getAllUsers(numberOfUsers)
+            val resultFlow = serviceUnderTest.getAllUsers(numberOfUsers)
+
+            val result = mutableListOf<Resource<List<UserData>>>()
+            resultFlow.collect {
+                result.add(it)
+            }
 
             // THEN
             verify(mockApiService).getUsers(numberOfUsers)
             verify(mockApiService).getUsers(captor.capture())
 
-            assertTrue(result is Resource.Error)
+            assertTrue(result.size == 2)
+            assertTrue(result[0] is Resource.Loading)
+            assertTrue(result[1] is Resource.Error)
         }
 
     @Test
