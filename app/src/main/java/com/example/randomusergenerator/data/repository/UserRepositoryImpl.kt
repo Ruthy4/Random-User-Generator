@@ -7,6 +7,7 @@ import com.example.randomusergenerator.domain.repository.UserRepository
 import com.example.randomusergenerator.utils.Resource
 import com.example.randomusergenerator.utils.safeApiCall
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
@@ -14,31 +15,31 @@ class UserRepositoryImpl @Inject constructor(
     private val apiService: ApiService,
     private val userDao: UserDao,
 ) : UserRepository {
-    override suspend fun getAllUsers(results: Int): Resource<List<UserData>> {
+    override suspend fun getAllUsers(results: Int): Flow<Resource<List<UserData>>> {
 
-        val localData = userDao.getUser()
-        val localUserResult = UserData.from(localData)
+        return flow {
+            val localData = userDao.getUser()
+            val localUserResult = UserData.from(localData)
 
-        Resource.Loading(localUserResult)
-
-        val remoteData = safeApiCall {
-            apiService.getUsers(results)
-        }
-
-        return when (remoteData) {
-            is Resource.Success -> {
-                userDao.updateUser(remoteData.data?.results)
-
-                val userResult = UserData.from(userDao.getUser())
-                Resource.Success(userResult)
+            emit(Resource.Loading(localUserResult))
+            val remoteData = safeApiCall {
+                apiService.getUsers(results)
             }
+            when (remoteData) {
+                is Resource.Success -> {
+                    userDao.updateUser(remoteData.data?.results)
 
-            is Resource.Error -> {
-                Resource.Error(remoteData.error, localUserResult)
-            }
+                    val userResult = UserData.from(userDao.getUser())
+                    emit(Resource.Success(userResult))
+                }
 
-            else -> {
-                Resource.Loading()
+                is Resource.Error -> {
+                    emit(Resource.Error(remoteData.error, localUserResult))
+                }
+
+                else -> {
+                    emit(Resource.Loading())
+                }
             }
         }
     }

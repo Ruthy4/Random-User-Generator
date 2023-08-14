@@ -1,5 +1,6 @@
 package com.example.randomusergenerator.data.repository
 
+import app.cash.turbine.test
 import com.example.randomusergenerator.data.local.UserData
 import com.example.randomusergenerator.data.local.dao.UserDao
 import com.example.randomusergenerator.data.remote.ApiService
@@ -47,17 +48,19 @@ class UserRepositoryImplTest {
     fun `when getUsers is called then return a successful list of users`() = runTest {
         val expectedData = Resource.Success(listOf(sampleUserData))
         val userList = listOf(sampleUser)
-        // GIVEN
+
         whenever(mockUserDao.getUser()).thenReturn(userList)
         whenever(mockApiService.getUsers(numberOfUsers))
             .thenReturn(Response.success(sampleUserResponse))
         whenever(mockUserDao.updateUser(any())).thenReturn(Unit)
 
-        // WHEN
-        serviceUnderTest.getAllUsers(numberOfUsers)
+        val resultFlow = serviceUnderTest.getAllUsers(numberOfUsers)
 
-        // THEN
-
+        resultFlow.test {
+            assertTrue(awaitItem() is Resource.Loading)
+            assertTrue(awaitItem() is Resource.Success)
+            cancelAndConsumeRemainingEvents()
+        }
         val initialDbResult = mockUserDao.getUser()
         assertTrue(initialDbResult.isNotEmpty())
         assertEquals(1, initialDbResult.size)
@@ -77,6 +80,7 @@ class UserRepositoryImplTest {
     @Test
     fun `when network call is made and has an error, then return appropriate error response`() =
         runTest {
+
             val errorText = "There is an error"
             val errorResponse = Response.error<UserResponse>(
                 404,
@@ -84,32 +88,29 @@ class UserRepositoryImplTest {
             )
             val userList = listOf(sampleUser)
 
-            // GIVEN
             whenever(mockUserDao.getUser()).thenReturn(userList)
             whenever(mockApiService.getUsers(numberOfUsers))
                 .thenReturn(errorResponse)
 
-            // WHEN
-            val result = serviceUnderTest.getAllUsers(numberOfUsers)
+            serviceUnderTest.getAllUsers(numberOfUsers).test {
+                assertTrue(awaitItem() is Resource.Loading)
+                assertTrue(awaitItem() is Resource.Error)
+                cancelAndConsumeRemainingEvents()
+            }
 
-            // THEN
             verify(mockApiService).getUsers(numberOfUsers)
             verify(mockApiService).getUsers(captor.capture())
-
-            assertTrue(result is Resource.Error)
         }
 
     @Test
     fun `when searchUser is called then return user from database`() = runTest {
-        // GIVEN
+
         val searchQuery = "John"
         val userList = listOf(sampleUser)
         whenever(mockUserDao.searchDatabase(searchQuery)).thenReturn(flowOf(userList))
 
-        // WHEN
         serviceUnderTest.searchUser(searchQuery)
 
-        // THEN
         verify(mockUserDao).searchDatabase(searchQuery)
 
         val actualData = mockUserDao.searchDatabase(searchQuery).first()
