@@ -24,6 +24,7 @@ ext {
     room_version = "2.4.3"
     test_ext_junit_version = "1.1.5"
     timber_version = "4.7.1"
+    turbine_version = "0.7.0"
 
 
     appDependencies = [
@@ -64,6 +65,7 @@ ext {
             mockito              : "org.mockito:mockito-core:$mockito_version",
             mockitoKotlin        : "org.mockito.kotlin:mockito-kotlin:$mockito_kotlin_version",
             roboelectric         : "org.robolectric:robolectric:$roboelectric_version",
-            testExtJunit         : "androidx.test.ext:junit:$test_ext_junit_version"
+            testExtJunit         : "androidx.test.ext:junit:$test_ext_junit_version",
+            turbine              : "app.cash.turbine:turbine:$turbine_version"
     ]
 }

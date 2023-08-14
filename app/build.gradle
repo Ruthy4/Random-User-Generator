@@ -98,5 +98,6 @@ dependencies {
     testImplementation testDependencies.mockitoKotlin
     testImplementation testDependencies.roboelectric
     testImplementation testDependencies.testExtJunit
+    testImplementation testDependencies.turbine
 
 }
